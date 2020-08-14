@@ -32,6 +32,7 @@ traversal_path = []
 
 # Generate permutations of directional preferences to iterate over:
 compasses = itertools.permutations(["n", "e", "s", "w"])
+# Scout objects have methods to explore multiple path options
 scouts = []
 for compass in compasses:
     # For each directional permutation, test both chirality options:

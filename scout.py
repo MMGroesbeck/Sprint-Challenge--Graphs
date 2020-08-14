@@ -39,13 +39,6 @@ class Scout:
             if room.get_room_in_direction(exit).id not in self.visited:
                 return True
         return False
-    def step_forward(self):
-        # Adds step to path, moves in facing direction, updates room.
-        direction = self.compass[self.facing]
-        if direction in self.room.get_exits():
-            self.steps.append(direction)
-            self.room = self.room.get_room_in_direction(direction)
-            self.visited.add(self.room.id)
     def move_direction(self, direction):
         # Moves without changing facing direction
         if direction in self.room.get_exits():
@@ -95,7 +88,7 @@ class Scout:
                     shortest = turn
             # Move in direction of shortest branch
             self.facing = self.compass.index(shortest)
-            self.step_forward()
+            self.move_direction(shortest)
     # For mode 2: find and follow shortest path to visited room with unvisited neighbor
     def nearest_new(self):
         # Returns path to nearest room with unvisited neighbor
